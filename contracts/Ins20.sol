@@ -145,15 +145,6 @@ contract Ins20 is IIns20 {
         return true;
     }
 
-    function testMint(address to, uint256 blockNumber) public payable {
-        require(msg.sender == deployer, "not deployer");
-        require(fee > 0, "Invalid fee");
-        require(msg.value == fee, "invalid value");
-        uint256 mintAmount = amountPerMint;
-        require(mintAmount * mintBlockCount <= maxSupply, "max supply exceeded");
-        _recordMintInfo(to, blockNumber);
-    }
-
     function split(uint256 amount) public {
         require(splitToken != address(0), "not support split");
         require(msg.sender == tx.origin, "not EOA");
